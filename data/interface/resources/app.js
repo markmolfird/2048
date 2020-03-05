@@ -104,13 +104,6 @@ config.app = {
   },
   "update": function (e) {
     var old = 100;
-    var keyboard = [...document.querySelectorAll(".keyboard tr td")];
-    var buttons = [...document.querySelectorAll(".settings button, .settings input")];
-    /*  */
-    var elements = keyboard.concat(buttons);
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].style.backgroundColor = "rgba(0,0,0,0.40)";
-    }
     /*  */
     document.getElementById("score").style.color = "#333";
     document.getElementById("score").style.backgroundColor = "rgba(0,0,0,0.40)";
@@ -135,7 +128,7 @@ config.app = {
             document.getElementById("score").style.color = id > 4 ? "#FFF" : "#333";
             old = lightness[id];
           }
-        } else elm.style.backgroundColor = "rgba(0,0,0,0.0.5)";
+        } else elm.style.backgroundColor = "rgba(0,0,0,0.05)";
       });
     });
   },

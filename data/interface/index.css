@@ -8,6 +8,7 @@ html, body {
 }
 
 body {
+  color: #555;
   display: flex;
   font-size: 12px;
   align-items: center;
@@ -17,13 +18,14 @@ body {
 }
 
 table {
+  color: #555;
   width: 100%;
   margin: 0 auto;
-  font-family: monospace;
+  font-family: arial, sans-serif;
 }
 
 table tr td, button, input {
-  color: #FFF;
+  font-size: 12px;
   user-select: none !important;
 }
 
@@ -55,6 +57,7 @@ button::-moz-focus-outer {border: 0 !important}
   max-height: 350px;
   border-spacing: 1px;
   table-layout: fixed;
+  font-family: monospace;
 }
 
 .main tr td {
@@ -86,6 +89,41 @@ button::-moz-focus-outer {border: 0 !important}
 .settings[toggle='hide'] {display: none}
 .settings[toggle='show'] {display: table}
 
+.settings tr td {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.settings button, .settings input {
+  margin: 0;
+  padding: 0;
+  color: #555;
+  height: 36px;
+  outline: none;
+  font-size: 12px;
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  font-family: monospace;
+  width: calc(100% - 2px);
+  text-overflow: ellipsis;
+  background: rgba(0,0,0,0.05);
+  border: solid 1px rgba(0,0,0,0.1);
+  transition: 300ms ease background-color;
+}
+
+.settings button:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+.settings input {
+  height: 34px;
+  text-align: center;
+  width: calc(100% - 4px);
+}
+
 .keyboard {
   padding: 0;
   max-width: 350px;
@@ -95,6 +133,7 @@ button::-moz-focus-outer {border: 0 !important}
 .keyboard tr td {
   height: 48px;
   text-align: center;
+  background-color: rgba(0,0,0,0.4);
 }
 
 .keyboard tr td svg {
@@ -106,39 +145,14 @@ button::-moz-focus-outer {border: 0 !important}
   cursor: pointer;
 }
 
-.settings tr td, .keyboard tr td {
+.keyboard tr td {
   border: 0;
   margin: 0;
   padding: 0;
 }
 
-.settings button, .settings input {
-  border: 0;
-  margin: 0;
-  padding: 0;
-  height: 36px;
-  outline: none;
-  font-size: 12px;
-  overflow: hidden;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  width: calc(100% - 2px);
-  text-overflow: ellipsis;
-}
-
-.settings input {
-  text-align: center;
-}
-
-.transparent {
-  color: #777 !important;
-  cursor: default !important;
-  background-color: transparent !important;
-}
-
-.transparent.left {text-align: left}
-.transparent.right {text-align: right}
+.left {text-align: left}
+.right {text-align: right}
 
 .color {
   width: 100%;
@@ -179,6 +193,7 @@ button::-moz-focus-outer {border: 0 !important}
 
 .pointer {
   cursor: pointer !important;
+  background-color: transparent !important;
 }
 
 .pointer svg {
