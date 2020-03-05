@@ -21,7 +21,7 @@ config.app = {
     "speed": 300,
     "auto": function () {
       var p = config.app.predict(config.app.kernel.AI, true);
-      if (p && config.app.kernel.AI.running) {
+      if (p !== null && config.app.kernel.AI.running) {
         config.app.matrix.cell.move(p, config.app.kernel.AI, false);
         config.app.update(config.app.kernel.AI);
         /*  */
@@ -135,7 +135,7 @@ config.app = {
             document.getElementById("score").style.color = id > 4 ? "#FFF" : "#333";
             old = lightness[id];
           }
-        } else elm.style.backgroundColor = "rgba(0,0,0,0.05)";
+        } else elm.style.backgroundColor = "rgba(0,0,0,0.0.5)";
       });
     });
   },
@@ -334,14 +334,17 @@ config.app = {
             config.app.kernel.random(e.grid, flag);
             e.steps++;
           } catch (e) {
-            if (config.LOG) console.error('Error!', e);
+            if (config.LOG) {
+              console.error('Error!', e);
+            }
           }
         } else {
           if (flag) {
             if (config.app.matrix.cell.TIMEOUT) window.clearTimeout(config.app.matrix.cell.TIMEOUT);
             config.app.matrix.cell.TIMEOUT = window.setTimeout(function () {
-              if (config.app.predict(config.app.kernel.AI, false) === null) {
-                background.send("app.notification.create", {"type": "alert", "msg": "Game Over! please press on the reset button to start a new game."});
+              var p = config.app.predict(config.app.kernel.AI, false);
+              if (p === null) {
+                window.alert("Game Over! please press on the reset button to start a new game.");
               }
             }, 1000);
           }

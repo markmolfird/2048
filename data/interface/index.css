@@ -65,7 +65,7 @@ button::-moz-focus-outer {border: 0 !important}
   font-size: 18px;
   empty-cells: show;
   text-align: center;
-  border: solid 1px rgba(0,0,0,0.05);
+  border: solid 1px rgba(0,0,0,0.1);
 }
 
 .main tr td[type="pop-in"] {animation: popin 0.5s}
