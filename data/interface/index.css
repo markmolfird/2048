@@ -240,10 +240,6 @@ button::-moz-focus-outer {border: 0 !important}
 	vertical-align: middle;
 }
 
-html[context="webapp"] .toolbar {
-  display: none;
-}
-
 @keyframes popin {
   0% {opacity: 0; transform: scale(0.5)}
   100% {opacity: 1; transform: scale(1)}
@@ -254,27 +250,24 @@ html[context="webapp"] .toolbar {
   100% {opacity: 1; transform: scale(1)}
 }
 
-@media (max-width: 350px) {
-  body {
-    padding: 0 5px;
-    width: calc(100% - 10px);
-  }
-  .container > table {
-      border-spacing: 0 5px;
-  }
+@media (max-width: 450px) {
   .toolbar {
     display: none;
   }
 }
 
-@media (max-width: 200px) {
+@media (max-width: 300px) {
   .main tr td {
     font-size: 12px;
   }
   .keyboard tr td {
-      height: 36px;
+      height: 32px;
   }
   .settings button, .settings input {
     font-size: 10px;
   }
+}
+
+html[context="webapp"] .toolbar {
+  display: none;
 }
