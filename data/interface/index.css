@@ -42,11 +42,13 @@ button::-moz-focus-outer {border: 0 !important}
 
 .container {
   width: 100%;
+  max-width: 400px;
   overflow: hidden;
+  border: solid 1px rgba(0,0,0,0.05);
 }
 
 .container > table {
-  border-spacing: 0 15px;
+  border-spacing: 0 10px;
 }
 
 .main {
@@ -55,6 +57,7 @@ button::-moz-focus-outer {border: 0 !important}
   height: 100vw;
   max-width: 350px;
   max-height: 350px;
+  margin: 10px auto;
   border-spacing: 1px;
   table-layout: fixed;
   font-family: monospace;
@@ -93,13 +96,15 @@ button::-moz-focus-outer {border: 0 !important}
   border: 0;
   margin: 0;
   padding: 0;
+  color: #777;
 }
 
 .settings button, .settings input {
   margin: 0;
   padding: 0;
-  color: #555;
-  height: 36px;
+  color: #333;
+  width: 100%;
+  height: 42px;
   outline: none;
   font-size: 12px;
   overflow: hidden;
@@ -107,8 +112,9 @@ button::-moz-focus-outer {border: 0 !important}
   white-space: nowrap;
   vertical-align: middle;
   font-family: monospace;
-  width: calc(100% - 2px);
+  box-sizing: border-box;
   text-overflow: ellipsis;
+  text-transform: uppercase;
   background: rgba(0,0,0,0.05);
   border: solid 1px rgba(0,0,0,0.1);
   transition: 300ms ease background-color;
@@ -119,14 +125,15 @@ button::-moz-focus-outer {border: 0 !important}
 }
 
 .settings input {
-  height: 34px;
+  width: 100%;
+  height: 42px;
   text-align: center;
-  width: calc(100% - 4px);
 }
 
 .keyboard {
   padding: 0;
   max-width: 350px;
+  margin: 10px auto;
   border-spacing: 1px;
 }
 
@@ -167,11 +174,16 @@ button::-moz-focus-outer {border: 0 !important}
 .color tr td {
   cursor: pointer;
   border-radius: 0;
+  transition: 100ms ease all;
+}
+
+.color tr td:hover {
+  transform: scale(1.5);
 }
 
 .toggle {
-  padding: 5px 0;
   line-height: 0;
+  padding: 10px 0;
   cursor: pointer;
   text-align: center;
 }
@@ -183,12 +195,11 @@ button::-moz-focus-outer {border: 0 !important}
 .half table {
   width: 100%;
   table-layout: fixed;
-  border-spacing: 0 1px;
+  border-spacing: 1px;
 }
 
 .half table #hint {
   font-weight: bold;
-  font-family: monospace;
 }
 
 .pointer {
@@ -215,10 +226,10 @@ button::-moz-focus-outer {border: 0 !important}
 
 .toolbar div {
 	padding: 0;
-	width: 32px;
-	height: 32px;
+	width: 42px;
+	height: 42px;
 	cursor: pointer;
-	line-height: 32px;
+	line-height: 42px;
 	text-align: center;
 	background-color: transparent;
 }

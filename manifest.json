@@ -1,14 +1,19 @@
 {
-  "version": "0.1.5",
+  "version": "0.1.6",
   "name": "2048 Prime",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "offline_enabled": true,
   "short_name": "2048-prime",
-  "permissions": ["storage", "notifications"],
-  "background": {"scripts": ["lib/background.js"]},
+  "permissions": ["storage", "contextMenus"],
   "description": "An easy-to-use and lite 2048 game!",
   "homepage_url": "https://mybrowseraddon.com/2048.html",
-  "browser_action": {
+  "commands": {
+    "_execute_action": {}
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
     "default_title": "2048 Prime",
     "default_icon": {
       "16": "data/icons/16.png",
