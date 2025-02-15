@@ -8,7 +8,7 @@ html, body {
 }
 
 body {
-  color: #555;
+  color: #333;
   display: flex;
   font-size: 13px;
   align-items: center;
@@ -18,7 +18,7 @@ body {
 }
 
 table {
-  color: #555;
+  color: #333;
   width: 100%;
   margin: 0 auto;
   font-family: arial, sans-serif;
@@ -68,7 +68,7 @@ button::-moz-focus-outer {border: 0 !important}
   padding: 0;
   color: #333;
   line-height: 0;
-  font-size: 22px;
+  font-size: 28px;
   empty-cells: show;
   text-align: center;
   border: solid 1px rgba(0,0,0,0.1);
@@ -209,7 +209,7 @@ button::-moz-focus-outer {border: 0 !important}
 }
 
 .pointer svg {
-  fill: #555 !important;
+  fill: #333 !important;
   vertical-align: middle;
 }
 
@@ -236,7 +236,7 @@ button::-moz-focus-outer {border: 0 !important}
 }
 
 .toolbar div svg {
-	fill: #7d7d7d;
+	fill: #555;
 	pointer-events: none;
 	vertical-align: middle;
 }
