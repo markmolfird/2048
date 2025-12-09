@@ -13,15 +13,15 @@ body {
   font-size: 13px;
   align-items: center;
   justify-content: center;
-  background-color: #FFFFFF;
-  font-family: arial, sans-serif;
+  background-color: #fff;
+  font-family: system-ui, sans-serif;
 }
 
 table {
   color: #333;
   width: 100%;
   margin: 0 auto;
-  font-family: arial, sans-serif;
+  font-family: system-ui, sans-serif;
 }
 
 table tr td, button, input {
@@ -44,7 +44,7 @@ button::-moz-focus-outer {border: 0 !important}
   width: 100%;
   max-width: 400px;
   overflow: hidden;
-  border: solid 1px rgba(0,0,0,0.05);
+  border: solid 1px rgba(0, 0, 0, 0.05);
 }
 
 .container > table {
@@ -60,7 +60,7 @@ button::-moz-focus-outer {border: 0 !important}
   margin: 10px auto;
   border-spacing: 1px;
   table-layout: fixed;
-  font-family: monospace;
+  font-family: system-ui, sans-serif;
 }
 
 .main tr td {
@@ -71,7 +71,8 @@ button::-moz-focus-outer {border: 0 !important}
   font-size: 28px;
   empty-cells: show;
   text-align: center;
-  border: solid 1px rgba(0,0,0,0.1);
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.01);
 }
 
 .main tr td[type="pop-in"] {animation: popin 0.5s}
@@ -112,17 +113,21 @@ button::-moz-focus-outer {border: 0 !important}
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
-  font-family: monospace;
   box-sizing: border-box;
   text-overflow: ellipsis;
   text-transform: uppercase;
-  background: rgba(0,0,0,0.05);
-  border: solid 1px rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.05);
+  font-family: system-ui, sans-serif;
+  border: solid 1px rgba(0, 0, 0, 0.1);
   transition: 300ms ease background-color;
 }
 
+.settings #score {
+  font-size: 15px;
+}
+
 .settings button:hover {
-  background: rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .settings input {
@@ -139,24 +144,36 @@ button::-moz-focus-outer {border: 0 !important}
 }
 
 .keyboard tr td {
+  margin: 0;
+  padding: 0;
   height: 48px;
   text-align: center;
-  background-color: rgba(0,0,0,0.5);
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: 300ms ease background-color;
+}
+
+.keyboard tr #redo,
+.keyboard tr #undo {
+  border: 0;
+}
+
+.keyboard tr td:hover {
+  background-color: rgba(0, 0, 0, 0.55);
+}
+
+.keyboard tr #redo:hover,
+.keyboard tr #undo:hover {
+  background-color: rgb(0 0 0 / 5%) !important;
 }
 
 .keyboard tr td svg {
-  fill: #FFFFFF;
+  fill: #fff;
   vertical-align: middle;
 }
 
 .keyboard tr td, .settings button[id] {
   cursor: pointer;
-}
-
-.keyboard tr td {
-  border: 0;
-  margin: 0;
-  padding: 0;
 }
 
 .left {text-align: left}
@@ -208,8 +225,9 @@ button::-moz-focus-outer {border: 0 !important}
   background-color: transparent !important;
 }
 
+.toggle svg,
 .pointer svg {
-  fill: #333 !important;
+  fill: #555 !important;
   vertical-align: middle;
 }
 
@@ -233,6 +251,11 @@ button::-moz-focus-outer {border: 0 !important}
 	line-height: 42px;
 	text-align: center;
 	background-color: transparent;
+  transition: 300ms ease background-color;
+}
+
+.toolbar div:hover {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .toolbar div svg {
@@ -269,6 +292,61 @@ button::-moz-focus-outer {border: 0 !important}
   }
 }
 
-html[context="webapp"] .toolbar {
+html[context="webapp"] .toolbar #reload,
+html[context="webapp"] .toolbar #support,
+html[context="webapp"] .toolbar #donation {
   display: none;
+}
+
+html[theme='dark'], 
+html[theme='dark'] body {
+  color: #ebebeb;
+  color-scheme: dark;
+  background-color: #1e1e1e;
+}
+
+html[theme='dark'] .main tr td {
+  background-color: rgb(255 255 255 / 5%);
+}
+
+html[theme='dark'] .toolbar div:hover {
+  background-color: rgb(255 255 255 / 5%);
+}
+
+html[theme='dark'] .keyboard tr td {
+  background-color: rgb(0 0 0 / 25%);
+}
+
+html[theme='dark'] .keyboard tr td:hover {
+  background-color: rgb(0 0 0 / 20%);
+}
+
+html[theme='dark'] .keyboard tr #redo:hover,
+html[theme='dark'] .keyboard tr #undo:hover {
+  background-color: rgb(255 255 255 / 5%) !important;
+}
+
+html[theme='dark'] .settings input,
+html[theme='dark'] .settings button {
+  background-color: rgb(255 255 255 / 5%);
+}
+
+html[theme='dark'] .settings input,
+html[theme='dark'] .settings tr td,
+html[theme='dark'] .settings button {
+  color: #ebebeb;
+}
+
+html[theme='dark'] .container,
+html[theme='dark'] .main tr td,
+html[theme='dark'] .keyboard tr td,
+html[theme='dark'] .settings input,
+html[theme='dark'] .settings button {
+  border-color: rgb(255 255 255 / 15%);
+}
+
+html[theme='dark'] .toggle svg,
+html[theme='dark'] .pointer svg,
+html[theme='dark'] .toolbar div svg {
+  fill: #ebebeb !important;
 }

@@ -71,6 +71,7 @@ var config = {
     }
   },
   "load": function () {
+    const theme = document.getElementById("theme");
     const reload = document.getElementById("reload");
     const support = document.getElementById("support");
     const donation = document.getElementById("donation");
@@ -91,6 +92,14 @@ var config = {
         const url = config.addon.homepage() + "?reason=support";
         chrome.tabs.create({"url": url, "active": true});
       }
+    }, false);
+    /*  */
+    theme.addEventListener("click", function () {
+      let attribute = document.documentElement.getAttribute("theme");
+      attribute = attribute === "dark" ? "light" : "dark";
+      /*  */
+      document.documentElement.setAttribute("theme", attribute);
+      config.storage.write("theme", attribute);
     }, false);
     /*  */
     window.removeEventListener("load", config.load, false);
@@ -179,9 +188,10 @@ var config = {
     },
     "update": function (e) {
       let old = 100;
+      const theme = config.storage.read("theme");
       /*  */
       document.getElementById("score").style.color = "#333";
-      document.getElementById("score").style.backgroundColor = "rgba(0,0,0,0.50)";
+      document.getElementById("score").style.backgroundColor = "rgba(0, 0, 0, 0.50)";
       /*  */
       config.app.table.forEach(function (tr, i) {
         tr.forEach(function (elm, j) {
@@ -195,37 +205,41 @@ var config = {
           /*  */
           let id = key > 0 ? Math.log2(key) : 0;
           if (id > 0) {
-            let lightness = {'1': 85, '2': 75, '3': 65, '4': 60, '5': 55, '6': 50, '7': 45, '8': 43, '9': 40, '10': 37, '11': 35};
-            let color = "hsla(" + config.app.color.HSLA.hue + ", " + config.app.color.HSLA.saturation + "%, " + lightness[id] + "%, " + config.app.color.HSLA.alphavalue + ")";
+            const lightness = {'1': 85, '2': 75, '3': 65, '4': 60, '5': 55, '6': 50, '7': 45, '8': 43, '9': 40, '10': 37, '11': 35};
+            const color = "hsla(" + config.app.color.HSLA.hue + ", " + config.app.color.HSLA.saturation + "%, " + lightness[id] + "%, " + config.app.color.HSLA.alphavalue + ")";
             /*  */
             elm.style.backgroundColor = color;
-            elm.style.color = id > 4 ? "#FFF" : "#333";
+            elm.style.color = id > 4 ? "#fff" : "#333";
             /*  */
             if (lightness[id] < old) {
               document.getElementById("score").style.backgroundColor = color;
-              document.getElementById("score").style.color = id > 4 ? "#FFF" : "#333";
+              document.getElementById("score").style.color = id > 4 ? "#fff" : "#333";
               old = lightness[id];
             }
           } else {
-            elm.style.backgroundColor = "rgba(0,0,0,0.05)";
+            elm.style.backgroundColor = theme === "light" ? "rgba(0, 0, 0, 0.01)" : "rgba(255, 255, 255, 0.05)";
           }
         });
       });
     },
     "start": function () {
-      config.app.matrix.TRF = new config.app.matrix.compute(config.app.matrix.size);
-      config.app.matrix.DEFAULT = config.app.matrix.DEFAULT.map(function (e) {return e.map(Math.exp)});
+      const main = document.getElementById("main");
+      const settings = config.storage.read("storage");
+      const theme = config.storage.read("theme") !== undefined ? config.storage.read("theme") : "light";
+      const bestscore = config.storage.read("bestscore") + ' (' + config.storage.read("besttile") + ')';
+      const toggle = config.storage.read("toggle") !== undefined ? config.storage.read("toggle") : "hide";
       /*  */
-      let bestscore = config.storage.read("bestscore") + ' (' + config.storage.read("besttile") + ')';
+      document.documentElement.setAttribute("theme", theme);
+      document.querySelector(".settings").setAttribute("toggle", toggle);
       document.getElementById("best").textContent = config.storage.read("bestscore") !== undefined ? bestscore : 0;
       document.getElementById("speed").value = config.storage.read("speed") !== undefined ? config.storage.read("speed") : config.app.play.speed;
       /*  */
-      let toggle = config.storage.read("toggle") !== undefined ? config.storage.read("toggle") : "hide";
-      document.querySelector(".settings").setAttribute("toggle", toggle);
+      config.app.matrix.TRF = new config.app.matrix.compute(config.app.matrix.size);
+      config.app.matrix.DEFAULT = config.app.matrix.DEFAULT.map(function (e) {return e.map(Math.exp)});
       /*  */
-      let main = document.getElementById("main");
       for (let i = 0; i < config.app.matrix.size; i++) {
-        let tr = document.createElement("tr");
+        const tr = document.createElement("tr");
+        /*  */
         config.app.table[i] = [];
         for (let j = 0; j < config.app.matrix.size; j++) {
           config.app.table[i][j] = document.createElement("td");
@@ -235,7 +249,6 @@ var config = {
         main.appendChild(tr);
       }
       /*  */
-      let settings = config.storage.read("storage");
       if (settings !== undefined) {
         config.app.kernel.AI = settings.e;
         config.app.matrix.cell.e = settings.e;
@@ -519,7 +532,7 @@ var config = {
           }, 100);
           /*  */
           config.app.matrix.max(result);
-          let bestscore = parseInt(config.storage.read("bestscore"));
+          const bestscore = parseInt(config.storage.read("bestscore"));
           config.storage.write("bestscore", bestscore ? (key > bestscore ? key : bestscore) : key);
           document.getElementById("best").textContent = config.storage.read("bestscore") + ' (' + config.storage.read("besttile") + ')';
           document.getElementById("score").textContent = key;
